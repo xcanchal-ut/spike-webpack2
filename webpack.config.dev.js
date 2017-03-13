@@ -1,7 +1,7 @@
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-// project source directory
+// Source files
 const SRC_DIR = path.join(__dirname, 'src');
 const STATICS_DIR = path.join(__dirname, 'statics');
 
@@ -12,6 +12,7 @@ const BUILD_PUBLIC_PATH = '/';
 
 module.exports = {
 
+    // source mapping tool
     devtool: 'inline-source-map',
 
     // application entry point
@@ -66,6 +67,28 @@ module.exports = {
             {
                 test: /\.(ico|jpe?g|png|gif)$/,
                 use: 'url-loader?limit=1000000&mimetype=image',
+            },
+            // fonts
+            {
+                test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
+                use: 'url-loader?limit=100000&mimetype=application/font-woff',
+            },
+            {
+                test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/,
+                use: 'url-loader?limit=100000&mimetype=application/font-woff',
+            },
+            {
+                test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+                use: 'url-loader?limit=100000&mimetype=application/octet-stream',
+            },
+            {
+                test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
+                use: 'file-loader',
+            },
+            // svg
+            {
+                test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+                use: 'url-loader?limit=100000&mimetype=image/svg+xml',
             },
         ],
     },

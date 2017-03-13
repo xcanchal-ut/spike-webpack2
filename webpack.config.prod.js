@@ -92,7 +92,7 @@ module.exports = {
                 test: /\.(ico|jpe?g|png|gif)$/,
                 use: 'url-loader?limit=1000000&mimetype=image',
             },
-            // fonts / svg
+            // fonts
             {
                 test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
                 use: 'url-loader?limit=100000&mimetype=application/font-woff',
@@ -109,6 +109,7 @@ module.exports = {
                 test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
                 use: 'file-loader',
             },
+            // svg
             {
                 test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
                 use: 'url-loader?limit=100000&mimetype=image/svg+xml',
