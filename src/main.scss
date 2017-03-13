@@ -1,0 +1,19 @@
+html, body {
+    height: 100%;
+}
+
+body {
+    background-color: #191919;
+    background-image: url("/src/statics/img/architecture.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+// import partial styles
+@import 'home-module/home-styles';
