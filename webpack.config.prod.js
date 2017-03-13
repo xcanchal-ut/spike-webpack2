@@ -6,7 +6,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 // Source files
 const SRC_DIR = path.join(__dirname, 'src');
-const STATICS_DIR = `${SRC_DIR}/statics`;
+const STATICS_DIR = path.join(__dirname, 'statics');
 
 // Build
 const BUILD_FILES_PATH = path.join(__dirname, 'build');
@@ -53,7 +53,7 @@ module.exports = {
         }),
         new CopyWebpackPlugin([{ 
             from: STATICS_DIR, 
-            to: BUILD_FILES_PATH,
+            to: `${BUILD_FILES_PATH}/statics/`,
         }]),
     ],
 
