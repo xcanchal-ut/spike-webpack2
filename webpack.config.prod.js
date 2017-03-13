@@ -2,10 +2,11 @@ const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 // Source files
 const SRC_DIR = path.join(__dirname, 'src');
-const STATICS_DIR = `${SRC_DIR}static`;
+const STATICS_DIR = `${SRC_DIR}/statics`;
 
 // Build
 const BUILD_FILES_PATH = path.join(__dirname, 'build');
@@ -30,8 +31,7 @@ module.exports = {
         // Separate vendor files from app files
         new webpack.optimize.CommonsChunkPlugin({
             names: ['vendor'],
-            minChunks: ({ context }) => context && context.indexOf('node_modules') !== -1
-                || context && context.indexOf('vendor') !== -1,
+            minChunks: ({ context }) => context && context.indexOf('node_modules') !== -1,
         }),
         // Minify and optimize the index.html
         new HtmlWebpackPlugin({
@@ -51,6 +51,10 @@ module.exports = {
             },
             inject: true,
         }),
+        new CopyWebpackPlugin([{ 
+            from: STATICS_DIR, 
+            to: BUILD_FILES_PATH,
+        }]),
     ],
 
     module: {
