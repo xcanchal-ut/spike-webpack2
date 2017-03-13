@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 // Source files
@@ -9,6 +10,12 @@ const STATICS_DIR = path.join(__dirname, 'statics');
 const BUILD_FILES_PATH = path.join(__dirname, 'build');
 const BUILD_PUBLIC_PATH = '/';
 
+const PORT = process.env.WEBPACK_PORT || 3333;
+const HMR_ENTRIES = [
+    `webpack-dev-server/client?http://localhost:${PORT}`,
+    'webpack/hot/dev-server',
+];
+
 
 module.exports = {
 
@@ -16,7 +23,9 @@ module.exports = {
     devtool: 'inline-source-map',
 
     // application entry point
-    entry: `${SRC_DIR}/index.js`,
+    entry: HMR_ENTRIES.concat([
+        `${SRC_DIR}/index.js`,
+    ]),
 
     // output configuration
     output: {
@@ -25,8 +34,10 @@ module.exports = {
         filename: 'bundle.js',
     },
 
-    // extract css in separate file
     plugins: [
+        // hot module replacement plugin
+        new webpack.HotModuleReplacementPlugin(),
+        // extract css in separate file
         new ExtractTextPlugin('styles.css'),
     ],
 

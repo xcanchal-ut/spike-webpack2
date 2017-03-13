@@ -17,7 +17,7 @@ const server = new WebpackDevServer(compiler, {
     // Also need to add the following lines to the config "entry"
     //    'webpack/hot/dev-server',
     //    'webpack-dev-server/client?http://localhost:6969',
-    hot: false,
+    hot: true,
 
     // Set this as true if you want to access dev server from arbitrary url.
     // This is handy if you are using a html5 router.
